@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+ <nav class="navbar">
+
+    <div class="logo">ISA</div>
+
+    <ul>
+       <li>
+    <a href="http://127.0.0.1:5000/about">About</a>
+</li>
+    </ul>
+
+</nav>  
+
+<div class="container">
+    <div class="circle circle1"></div>
+<div class="circle circle2"></div>
+<div class="circle circle3"></div>
+<div class="circle circle4"></div>
+
+    <h1>InsightSearch AI.</h1>
+
+    <p class="subtitle">
+        Search News, Movies, Study, Facts, Lifestyle and More...
+    </p>
+     
+
+    <form action="/search" method="POST" class="search-box">
+
+
+        <span class="search-icon">🔍</span>
+
+        <input type="text" name ="query" placeholder="Search anything..."required>
+
+        <img src="{{ url_for('static', filename='images/animal.jpg') }}" id="highlight" alt="highlight">
+    </form>
+
+    <div class="categories">
+
+    <button type="button" data-query="Latest news India">
+        📰 News
+    </button>
+
+    <button type="button" data-query="Latest movies in Hindi, English, Bollywood, Hollywood, South Indian and other languages">
+    🎬 Movies
+</button>
+
+    <button type="button" data-query="Study and education including engineering, programming, science, mathematics, computer science, school and college subjects">
+    📚 Study
+</button>
+    
+<button type="button" data-query="Interesting facts about science, space, technology, history, animals, nature and the human body">
+    💡 Facts
+</button>
+
+    <button type="button" data-query="Lifestyle tips about food, fitness, fashion, travel, daily life and personal development">
+    🌿 Lifestyle
+</button>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

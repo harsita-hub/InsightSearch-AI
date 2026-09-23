@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Result</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{ 
+    min-height:100vh;
+    background:linear-gradient(
+        135deg,
+        #070013 0%,
+        #12002e 25%,
+        #3d0b6d 50%,
+        #0b2f6d 75%,
+        #02142e 100%
+    );
+
+    font-family:Arial,sans-serif;
+    padding:30px 0;
+}
+
+.container{ 
+    width:80%;
+    max-width:1000px;
+    margin:40px auto;
+    padding:35px;
+
+    background:rgba(20,15,45,.72); 
+    backdrop-filter:blur(18px); 
+
+    border:1px solid rgba(255,255,255,.12); 
+    border-radius:20px;
+
+    box-shadow: 
+        0 0 20px rgba(168,85,247,.35), 
+        0 0 40px rgba(59,130,246,.25); 
+
+    color:white; 
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+h2{
+    margin-top:20px;
+    margin-bottom:10px;
+}
+
+.query{
+    font-size:25px;
+    font-weight:bold;
+    color:#ffe066;
+    margin-bottom:20px;
+}
+
+.answer{ 
+    background:#1a1545; 
+
+    border:1px solid rgba(138,43,226,.35); 
+    border-radius:15px;
+
+    padding:20px;
+    margin:15px 0 25px;
+
+    line-height:1.7;
+
+    box-shadow: 
+        0 0 15px rgba(138,43,226,.25); 
+
+    color:white; 
+    white-space:pre-wrap;
+}
+
+.search-card{
+    background: rgba(20,15,55,0.85);
+    border:1px solid rgba(120,170,255,0.25);
+    border-radius:18px;
+    padding:20px;
+    margin:18px 0;
+    backdrop-filter: blur(15px);
+    box-shadow:
+        0 0 15px rgba(140,80,255,.25),
+        0 0 30px rgba(0,180,255,.15);
+    transition:0.35s;
+}
+
+.title{
+    color:#7cc8ff;
+    font-size:24px;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.title:hover{
+    color:#b892ff;
+    text-decoration:underline;
+}
+
+.search-card:hover{
+    transform:translateY(-5px);
+    border-color:#6cf3ff;
+    box-shadow:
+        0 0 20px rgba(108,243,255,.5),
+        0 0 45px rgba(140,80,255,.35);
+}
+
+.url{
+    color:#64ffda;
+    margin:8px 0;
+    font-size:15px;
+    word-break:break-all;
+}
+
+.search-card p{
+    color:#d8d8ff;
+    line-height:1.7;
+    margin-top:10px;
+}
+
+.back-btn{
+    display:inline-block;
+    margin-top:25px;
+    padding:12px 25px;
+    background:skyblue;
+    color:#439ba7;
+    text-decoration:none;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.back-btn:hover{
+    background:#2247ab;
+}
+@keyframes bgmove{
+    0%{
+        background-position:0% 50%;
+    }
+
+    50%{
+        background-position:100% 50%;
+    }
+
+    100%{
+        background-position:0% 50%;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h1><h1>InsightSearch AI</h1></h1>
+
+<h2>You searched for:</h2>
+
+<div class="query">
+{{ query }}
+</div>
+
+<h2>AI Answer</h2>
+
+<div class="answer">
+{{ answer }}
+</div>
+
+<div class="follow-up">
+
+    <h2>💬 Have a question?</h2>
+
+    <form action="/follow-up" method="POST">
+
+        <input
+            type="text"
+            name="question"
+            placeholder="Ask a follow-up question..."
+            required
+        >
+
+        <button type="submit">
+            Ask
+        </button>
+
+    </form>
+
+</div>
+<h2>🔎 Search Results</h2>
+
+{% for source in sources %}
+
+<div class="search-card">
+
+<a href="{{ source.url }}" target="_blank" class="title">
+{{ source.title }}
+</a>
+
+<div class="url">
+{{ source.url }}
+</div>
+
+<p>
+{{ source.content[:120] }}...
+</p>
+
+</div>
+
+{% endfor %}
+
+<a href="/" class="back-btn">⬅ Back to Home</a>
+
+</div>
+
+</body>
+</html>
