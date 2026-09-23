@@ -68,4 +68,4 @@ Instead of only displaying search results, the application collects relevant inf
 
 ## Author
 
-Harshita Das
+Harsita Das
